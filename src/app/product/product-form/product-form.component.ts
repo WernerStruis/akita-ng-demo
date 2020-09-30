@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ProductService} from '../product.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ProductService} from '../product.service';
+import {ProductQuery} from '../store/product.query';
 
 @Component({
   selector: 'app-product-form',
@@ -14,10 +15,10 @@ export class ProductFormComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private productQuery: ProductQuery,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     // Maak product form
@@ -31,8 +32,8 @@ export class ProductFormComponent implements OnInit {
     const productId = this.route.snapshot.params.productId;
     if (productId) {
       this.productId = productId;
-      this.productService
-        .getProductById(productId)
+      this.productQuery
+        .selectEntity(productId)
         .subscribe(product => this.productForm.patchValue(product));
     }
   }
