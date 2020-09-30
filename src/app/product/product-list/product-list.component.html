@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col">
+    <h2>Producten</h2>
+  </div>
+  <div class="col-auto">
+    <button
+      class="btn btn-success"
+      routerLink="add"
+    >Product toevoegen</button>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <ul class="list-group">
+
+      <li [routerLink]="[product.id]" class="list-group-item" *ngFor="let product of producten$ | async">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ product.naam }}</h5>
+          <small>{{ product.prijs | currency }}</small>
+        </div>
+        <p class="mb-1">{{ product.beschrijving }}</p>
+      </li>
+
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-auto">
+    <button class="btn btn-primary mb-3" [routerLink]="['..']">
+      Terug
+    </button>
+  </div>
+  <div class="col">
+    <h2>Product toevoegen</h2>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="productForm" (ngSubmit)="handleSubmit()">
+      <div class="form-group">
+        <label for="product_naam">Productnaam</label>
+        <input
+          type="text"
+          class="form-control"
+          id="product_naam"
+          formControlName="naam"
+        >
+      </div>
+      <div class="form-group">
+        <label for="product_beschrijving">Productbeschrijving</label>
+        <input
+          type="text"
+          class="form-control"
+          id="product_beschrijving"
+          formControlName="beschrijving"
+        >
+      </div>
+      <div class="form-group">
+        <label for="product_naam">Prijs</label>
+        <input
+          type="number"
+          class="form-control"
+          id="product_prijs"
+          formControlName="prijs"
+        >
+      </div>
+
+      <button class="btn btn-success float-right">Toevoegen</button>
+    </form>
+  </div>
+</div>
