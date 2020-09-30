@@ -4,6 +4,7 @@ import {Product} from '../product.model';
 import {Observable} from 'rxjs';
 import {ProductService} from '../product.service';
 import {tap} from 'rxjs/operators';
+import {ProductQuery} from '../store/product.query';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,12 +16,13 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private productQuery: ProductQuery
   ) { }
 
   ngOnInit(): void {
     const productId = this.route.snapshot.params.productId;
-    this.product$ = this.productService.getProductById(productId);
+    this.product$ = this.productQuery.selectEntity(productId);
   }
 
 }

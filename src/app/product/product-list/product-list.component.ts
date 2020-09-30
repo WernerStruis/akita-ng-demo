@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Product} from '../product.model';
 import {ProductService} from '../product.service';
+import {ProductQuery} from '../store/product.query';
 
 
 @Component({
@@ -13,11 +14,13 @@ export class ProductListComponent implements OnInit {
   public producten$: Observable<Product[]>;
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private productQuery: ProductQuery
   ) { }
 
   ngOnInit(): void {
-    this.producten$ = this.productService.getProducts();
+    this.productService.getProducts().subscribe();
+    this.producten$ = this.productQuery.products$;
   }
 
 }

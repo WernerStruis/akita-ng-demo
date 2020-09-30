@@ -16,11 +16,6 @@ export class ProductsApiService {
     return of(this.products);
   }
 
-  public fetchProductById(productId: number): Observable<Product> {
-    // Geen idee waarom die niet zonder string casting wilt werken, waarschijnlijk een typing ding
-    return of(this.products.find(p => p.id.toString() === productId.toString()));
-  }
-
   public addProduct(data: any): Observable<void> {
     return of(
       this.products.push({
